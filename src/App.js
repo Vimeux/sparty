@@ -2,6 +2,7 @@ import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
 import { NativeBaseProvider } from 'native-base'
 import React from 'react'
 import { SafeAreaView, StatusBar, useColorScheme } from 'react-native'
+import { AddPartyProvider } from './contexts/AddPartyContext'
 
 import { AuthProvider } from './contexts/AuthContext'
 import Navigator from './navigation/Navigator'
@@ -10,7 +11,9 @@ import { getTheme } from './theme/Theme'
 const WithContext = () => {
   return (
     <AuthProvider>
-      <App />
+      <AddPartyProvider>
+        <App />
+      </AddPartyProvider>
     </AuthProvider>
   )
 }

@@ -8,6 +8,7 @@ import RegisterScreen from '../screens/RegisterScreen'
 import HomeScreen from '../screens/HomeScreen'
 import TabBar from './TabBar'
 import ProfileScreen from '../screens/ProfileSreen'
+import AddParty from '../screens/AddParty'
 
 const MainNavigator = createBottomTabNavigator()
 
@@ -31,11 +32,13 @@ function MainTabNavigator () {
   return (
     <MainNavigator.Navigator
       tabBar={(props) => <TabBar {...props} />}
+      initialRouteName='Home'
       screenOptions={{
         headerShown: false
       }}
     >
       {/* <MainNavigator.Group> */}
+      <MainNavigator.Screen name='Add Party' options={{ tabBarIcon: 'add' }} component={AddParty} />
       <MainNavigator.Screen name='Home' options={{ tabBarIcon: 'home' }} component={HomeScreen} />
       <MainNavigator.Screen name='Profile' options={{ tabBarIcon: 'person' }} component={ProfileScreen} />
       {/* </MainNavigator.Group> */}
@@ -73,7 +76,7 @@ function Navigator () {
 
   if (state.user && state.token) {
     return (
-      <MainTabNavigator profilIsComplete={state.phone && state.school && state.class && state.status && state.biography} />
+      <MainTabNavigator />
     )
   } else {
     return (

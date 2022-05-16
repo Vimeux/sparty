@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import axios from 'axios'
 
 const api = axios.create({
@@ -40,6 +41,22 @@ const registerWithRegistrationCredentials = async registrationCredentials => {
   }
 }
 
+const addParty = async party => {
+  // on récupère le token de l'utilisateur connecté pour l'envoyer dans le header de la requête
+  const getUserToken = await AsyncStorage.getItem('AUTH')
+  const userToken = getUserToken ? JSON.parse(getUserToken).token : null
+  try {
+    const response = await api.post('/party', party, {
+      headers: {
+        'x-access-token': userToken
+      }
+    })
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 // Récupération des informations de l'utilisateur actuellement connecté
 // const getUserInfos = async () => {
 //   // On récupère le token de l'utilisateur connecté pour le passer dans le header
@@ -59,5 +76,6 @@ const registerWithRegistrationCredentials = async registrationCredentials => {
 
 export {
   loginWithCredentials,
-  registerWithRegistrationCredentials
+  registerWithRegistrationCredentials,
+  addParty
 }
