@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Box, Button, Container, Icon, Text, View, VStack } from 'native-base'
+import { Box, Button, Container, VStack } from 'native-base'
 import { useAddPartyContext } from '../contexts/AddPartyContext'
 
 const AddParty = () => {
-  const { steps, activeIndex, handleNext, handleBack, addTrip, TripDatas } = useAddPartyContext()
+  const { steps, activeIndex, handleNext, handleBack, addPartyData, partyDatas } = useAddPartyContext()
 
   const [activeStep, setActiveStep] = useState(steps[activeIndex])
 
@@ -22,7 +22,7 @@ const AddParty = () => {
                 <VStack direction='row' space={4} style={{ width: '100%' }}>
                   <Box style={{ width: '100%' }}>
                     {activeIndex !== 0 && <Button onPress={handleBack}>Retour</Button>}
-                    <Button onPress={() => addTrip(TripDatas)}>Créer la soirée</Button>
+                    <Button onPress={() => addPartyData(partyDatas)}>Créer la soirée</Button>
                   </Box>
                 </VStack>
                 )

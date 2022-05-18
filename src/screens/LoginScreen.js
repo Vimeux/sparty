@@ -8,7 +8,7 @@ import { loginUser, useAuth } from '../contexts/AuthContext'
 function LoginScreen ({ navigation }) {
   const isDarkMode = useColorScheme() === 'dark'
 
-  const { dispatch } = useAuth()
+  const { dispatch, state: { error } } = useAuth()
 
   const handleLogin = async (credentials) => {
     await loginUser(credentials, dispatch)
@@ -22,6 +22,7 @@ function LoginScreen ({ navigation }) {
         <TouchableOpacity onPress={() => navigation.navigate('Register')}>
           <Text>Pas de compte ?</Text>
         </TouchableOpacity>
+        {error && <Text>{error}</Text>}
       </Center>
     </Box>
   )

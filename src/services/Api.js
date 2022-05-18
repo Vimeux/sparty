@@ -53,6 +53,15 @@ const addParty = async party => {
     })
     return response.data
   } catch (error) {
+    console.error({ errors: error.message })
+  }
+}
+
+const getProducts = async () => {
+  try {
+    const response = await api.get('/product')
+    return response.data
+  } catch (error) {
     console.error(error)
   }
 }
@@ -77,5 +86,6 @@ const addParty = async party => {
 export {
   loginWithCredentials,
   registerWithRegistrationCredentials,
-  addParty
+  addParty,
+  getProducts
 }

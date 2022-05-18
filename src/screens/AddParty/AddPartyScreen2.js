@@ -1,10 +1,23 @@
 import React from 'react'
-import { Text, View } from 'native-base'
+import { Input, Text, View } from 'native-base'
+import { useAddPartyContext } from '../../contexts/AddPartyContext'
 
 const AddPartyScreen2 = () => {
+  const { partyDatas, setPartyDatas } = useAddPartyContext()
+
+  const onChange = (value) => {
+    setPartyDatas({ ...partyDatas, maxPersonn: value })
+  }
+
   return (
     <View>
-      <Text>AddPartyScreen2</Text>
+      <Text>Nombre de personne</Text>
+      <Input
+        type='number'
+        keyboardType='decimal-pad'
+        onChangeText={onChange}
+        value={partyDatas.maxPersonn}
+      />
     </View>
   )
 }

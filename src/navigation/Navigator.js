@@ -37,36 +37,9 @@ function MainTabNavigator () {
         headerShown: false
       }}
     >
-      {/* <MainNavigator.Group> */}
       <MainNavigator.Screen name='Add Party' options={{ tabBarIcon: 'add' }} component={AddParty} />
       <MainNavigator.Screen name='Home' options={{ tabBarIcon: 'home' }} component={HomeScreen} />
       <MainNavigator.Screen name='Profile' options={{ tabBarIcon: 'person' }} component={ProfileScreen} />
-      {/* </MainNavigator.Group> */}
-      {/* <MainNavigator.Group screenOptions={{ presentation: 'modal' }}>
-        <MainNavigator.Screen name='Modal' component={AddTripModal} />
-      </MainNavigator.Group>
-      <MainNavigator.Group screenOptions={{ presentation: 'modal' }}>
-        <MainNavigator.Screen
-          name='AddCarModalScreen1'
-          component={AddCarModalScreen1}
-          options={{ title: 'AddCarScreen1' }}
-        />
-        <MainNavigator.Screen
-          name='AddCarModalScreen2'
-          component={AddCarModalScreen2}
-          options={{ title: 'AddCarScreen2' }}
-        />
-        <MainNavigator.Screen
-          name='AddCarModalScreen3'
-          component={AddCarModalScreen3}
-          options={{ title: 'AddCarScreen3' }}
-        />
-        <MainNavigator.Screen
-          name='AddCarModalScreen4'
-          component={AddCarModalScreen4}
-          options={{ title: 'AddCarScreen4' }}
-        />
-      </MainNavigator.Group> */}
     </MainNavigator.Navigator>
   )
 }
