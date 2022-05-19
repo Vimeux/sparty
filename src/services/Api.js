@@ -4,6 +4,7 @@ import axios from 'axios'
 const api = axios.create({
   baseURL: 'http://192.168.1.17:3000/api',
   headers: {
+    'Access-Control-Allow-Origin': 'http://192.168.1.17:3000',
     'Content-Type': 'application/json',
     Accept: 'application/json'
   },
@@ -41,6 +42,15 @@ const registerWithRegistrationCredentials = async registrationCredentials => {
   }
 }
 
+const getProducts = async () => {
+  try {
+    const response = await api.get('/product')
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 const addParty = async party => {
   // on récupère le token de l'utilisateur connecté pour l'envoyer dans le header de la requête
   const getUserToken = await AsyncStorage.getItem('AUTH')
@@ -58,12 +68,19 @@ const addParty = async party => {
   }
 }
 
-const getProducts = async () => {
+const getParties = async (token) => {
   try {
-    const response = await api.get('/product')
+    // const getUserToken = await AsyncStorage.getItem('AUTH')
+    // const userToken = getUserToken ? JSON.parse(getUserToken).token : null
+    const response = await api.get('/parties', {
+      headers: {
+        'x-access-token': token
+      }
+    })
     return response.data
   } catch (error) {
-    console.error(error)
+    console.log(error)
+    return { error: error.message }
   }
 }
 
@@ -87,6 +104,7 @@ const getProducts = async () => {
 export {
   loginWithCredentials,
   registerWithRegistrationCredentials,
+  getProducts,
   addParty,
-  getProducts
+  getParties
 }

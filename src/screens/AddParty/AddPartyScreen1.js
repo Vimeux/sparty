@@ -7,6 +7,7 @@ const AddPartyScreen1 = () => {
   const { partyDatas, setPartyDatas } = useAddPartyContext()
   const [date, setDate] = useState(partyDatas.date)
   const [invitationCode, setInvitationCode] = useState(partyDatas.invitationCode)
+  const [name, setName] = useState(partyDatas.name)
 
   const handleDateChange = (date) => {
     setDate(date)
@@ -20,8 +21,21 @@ const AddPartyScreen1 = () => {
     console.log('invitationCode: ', invitationCode)
   }
 
+  const handleNameChange = (name) => {
+    setName(name)
+    setPartyDatas({ ...partyDatas, name })
+    console.log('name: ', name)
+  }
+
   return (
     <View>
+      <VStack>
+        <Text>nom de la soirée</Text>
+        <Input
+          onChangeText={handleNameChange}
+          value={name}
+        />
+      </VStack>
       <VStack>
         <Text>invitationCode</Text>
         <Input

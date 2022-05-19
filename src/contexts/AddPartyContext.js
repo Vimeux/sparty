@@ -45,6 +45,7 @@ export const AddPartyProvider = ({ children }) => {
   }
 
   const [partyDatas, setPartyDatas] = useState({
+    name: '',
     budget: null,
     invitationCode: '',
     date: new Date(),
