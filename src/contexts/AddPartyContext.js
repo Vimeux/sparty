@@ -52,11 +52,14 @@ export const AddPartyProvider = ({ children }) => {
     products: []
   })
 
+  const [error, setError] = useState(null)
+
   const addPartyData = async (partyData) => {
-    try {
-      await addParty(partyData)
-    } catch (error) {
-      console.log('error: ', error)
+    const data = await addParty(partyData)
+    if (data.error) {
+      setError('une erreur s\'est produite, vueillez réessayer plus tard')
+    } else {
+      setError('Formulaire Soumis')
     }
   }
 
@@ -68,7 +71,8 @@ export const AddPartyProvider = ({ children }) => {
       handleBack,
       partyDatas,
       setPartyDatas,
-      addPartyData
+      addPartyData,
+      error
     }),
     [
       activeIndex,
@@ -77,7 +81,8 @@ export const AddPartyProvider = ({ children }) => {
       handleNext,
       handleBack,
       partyDatas,
-      setPartyDatas
+      setPartyDatas,
+      error
     ]
   )
 

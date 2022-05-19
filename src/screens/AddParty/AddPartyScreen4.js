@@ -52,19 +52,23 @@ const AddPartyScreen4 = () => {
   return (
     <View>
       <Text>{JSON.stringify(partyDatas.products)}</Text>
-      {Products.map((product, index) => (
-        <FormControl
-          key={index}
-        >
-          <FormControl.Label>{product.name}</FormControl.Label>
-          <Button onPress={() => addProduct(index, product.name)}> + </Button>
-          {partyDatas.products.find((p) => p.name === product.name) // check if the product exist in partyDatas
-            ? (
-              <Button onPress={() => removeProduct(index, product.name)}> - </Button>
-              )
-            : null}
-        </FormControl>
-      ))}
+      {Products
+        ? Products.map((product, index) => (
+          <FormControl
+            key={index}
+          >
+            <FormControl.Label>{product.name}</FormControl.Label>
+            <Button onPress={() => addProduct(index, product.name)}> + </Button>
+            {partyDatas.products.find((p) => p.name === product.name) // check if the product exist in partyDatas
+              ? (
+                <Button onPress={() => removeProduct(index, product.name)}> - </Button>
+                )
+              : null}
+          </FormControl>
+        ))
+        : (
+          <Text>Loading...</Text>
+          )}
     </View>
   )
 }

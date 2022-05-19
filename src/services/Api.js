@@ -53,7 +53,8 @@ const addParty = async party => {
     })
     return response.data
   } catch (error) {
-    console.error({ errors: error.message })
+    console.error({ error: error.message })
+    return { error: error.message }
   }
 }
 
